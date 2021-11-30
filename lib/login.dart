@@ -24,22 +24,15 @@ class SecondRoute extends StatelessWidget {
           child: Container(
             height: 900,
             child: Column(
-      
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(height: 50,),
-      
-                
-      
                     Text('Login',style: TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
                         ),
-                
-                
-              
                 Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
