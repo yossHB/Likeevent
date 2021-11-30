@@ -49,7 +49,7 @@ class SecondRoute extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                         child: TextFormField(
                           decoration: const InputDecoration(
-                            icon: Icon(Icons.star),
+                            icon: Icon(Icons.account_circle_outlined),
                             border: UnderlineInputBorder(),
                             labelText: 'Enter your username',
                           ),
@@ -60,7 +60,7 @@ class SecondRoute extends StatelessWidget {
                         child: TextFormField(
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
-                            icon: Icon(Icons.email),
+                            icon: Icon(Icons.email_outlined),
                             labelText: 'Enter your Email',
                           ),
                         ),
@@ -69,14 +69,9 @@ class SecondRoute extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                         child: TextFormField(
                           decoration: const InputDecoration(
-                            icon: Icon(Icons.usb),
+                            icon: Icon(Icons.enhanced_encryption_outlined),
                             border: UnderlineInputBorder(),
                             labelText: 'Enter your Password',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.purple,
-                              ),
-                            ),
                           ),
                         ),
                       ),
