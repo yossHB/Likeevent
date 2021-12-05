@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:flutter_application_likeevent/screens/login.dart';
+import 'package:flutter_application_likeevent/screens/signUp.dart';
 
 
 class SecondScreen extends StatelessWidget {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Center(
         child: Container(
           child: Column(
@@ -13,18 +16,21 @@ class SecondScreen extends StatelessWidget {
             children: [
               Container(
                 child: Image.asset('assets/images/logo3.png'),
-                height: 200,
-                width: 200,
+                height: 250,
+                width: 250,
               ),
               Container(
-                child: Text(
-                  'Welcome To The World',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 70.0),
+                  child: Text(
+                    'Welcome To The World',
+                    style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               Container(
@@ -32,16 +38,16 @@ class SecondScreen extends StatelessWidget {
                 child: ElevatedButton(
                   child: Text(
                     'GET STARTED',
-                    style: TextStyle(fontSize: 20.5, color: Colors.white),
+                    style: TextStyle(fontSize: 22.0, color: Colors.purple),
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SecondRoute()),
+                      MaterialPageRoute(builder: (context) => Login()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
+                    primary: Colors.white,
                     elevation: 4,
                     shadowColor: Colors.purple[400],
                   ),
@@ -64,7 +70,12 @@ class SecondScreen extends StatelessWidget {
                     'Sign Up',
                     style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUp()),
+                    );
+                  },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Colors.white, width: 1.3),
                     elevation: 4,
