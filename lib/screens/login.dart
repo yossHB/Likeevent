@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_likeevent/screens/signUp.dart';
+//import 'package:twitter_login/twitter_login.dart';
 
 
 class Login extends StatefulWidget {
@@ -154,12 +155,11 @@ class _LoginState extends State<Login>{
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        
+                      onTap: () async {
+                        //await twitterLogin();
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        
                         child: Image.asset(
                         'assets/images/google-plus-icon.png',
                         width: 36.0,
@@ -216,5 +216,40 @@ class _LoginState extends State<Login>{
     );
   }
 }
+/*
+ Future twitterLogin() async {
+    final twitterLogin = TwitterLogin(
+      /// Consumer API keys
+      apiKey: API_KEY,
 
+      /// Consumer API Secret keys
+      apiSecretKey: API_SECRET_KEY,
 
+      /// Registered Callback URLs in TwitterApp
+      /// Android is a deeplink
+      /// iOS is a URLScheme
+      redirectURI: 'example://',
+    );
+
+    /// Forces the user to enter their credentials
+    /// to ensure the correct users account is authorized.
+    /// If you want to implement Twitter account switching, set [force_login] to true
+    /// login(forceLogin: true);
+    final authResult = await twitterLogin.login();
+    switch (authResult.status) {
+      case TwitterLoginStatus.loggedIn:
+        // success
+        print('====== Login success ======');
+        break;
+      case TwitterLoginStatus.cancelledByUser:
+        // cancel
+        print('====== Login cancel ======');
+        break;
+      case TwitterLoginStatus.error:
+      case null:
+        // error
+        print('====== Login error ======');
+        break;
+    }
+  }
+}*/

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.likeevent.flutter_application_likeevent">
    <application
-        android:label="flutter_application_likeevent"
+        android:label="Likeevent"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

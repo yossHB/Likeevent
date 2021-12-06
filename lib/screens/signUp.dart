@@ -1,17 +1,126 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_likeevent/screens/login.dart';
-
-
+/* sign Up page */
 class SignUp extends StatefulWidget {
   @override
-  _SignUpState createState()=>_SignUpState();
+  _SignUpState createState() => _SignUpState();
 }
-class _SignUpState extends State<SignUp>{
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
-  
 
+class _SignUpState extends State<SignUp> {
+  /* parameters */
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController userName = new TextEditingController();
+  late UserCredential userCredential;
+
+  /* fct to send data to the firebase */
+  sendData() async {
+    try {
+      userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: email.text, password: password.text);
+      /* collect use data */
+      await FirebaseFirestore.instance.collection('userData').add({
+        'userName': userName.text.trim(),
+        'email': email.text.trim(),
+        'password': password.text.trim(),
+      });
+    } /* in case of an error of email or password*/
+    on FirebaseException catch (e) {
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+            backgroundColor: Colors.grey[200],
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('weak password !',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold))
+              ],
+            )));
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.grey[200],
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('The account is already exist ! ',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold))
+              ],
+            )));
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+  /* fct to validate data in the submission */
+  /* the error appear in the snack bare */
+  /* trim() fct to remove the espace ' '  */
+  void validation() {
+    if (userName.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(' Please Enter your username!',
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+            ],
+          )));
+      return;
+    }
+    if (email.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(' Please Enter your email!',
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+            ],
+          )));
+      return;
+    }
+    /* valide the format of the email */
+    if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email.text)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Please Enter a valid Email !',
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+            ],
+          )));
+      return;
+    }
+    /* verif the presence of the password */
+    if (password.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(' Please Enter your Password !',
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+            ],
+          )));
+
+      return;
+    } else {
+      sendData();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +135,7 @@ class _SignUpState extends State<SignUp>{
                   height: 50,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 30.0,bottom:30.0),
+                  padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
                   child: Text(
                     'SignUp',
                     style: TextStyle(
@@ -45,10 +154,12 @@ class _SignUpState extends State<SignUp>{
                         width: 100,
                         height: 100,
                       ),
+                      /* username container */
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          controller: userName,
                           decoration: const InputDecoration(
                             icon: Icon(Icons.account_circle_outlined),
                             border: UnderlineInputBorder(),
@@ -56,10 +167,12 @@ class _SignUpState extends State<SignUp>{
                           ),
                         ),
                       ),
+                      /* email container */
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          controller: email,
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             icon: Icon(Icons.email_outlined),
@@ -67,10 +180,12 @@ class _SignUpState extends State<SignUp>{
                           ),
                         ),
                       ),
+                      /* password container */
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          controller: password,
                           decoration: const InputDecoration(
                             icon: Icon(Icons.enhanced_encryption_outlined),
                             border: UnderlineInputBorder(),
@@ -78,18 +193,7 @@ class _SignUpState extends State<SignUp>{
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 16),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.enhanced_encryption_outlined),
-                            border: UnderlineInputBorder(),
-                            labelText: 'Confirm your Password',
-                          ),
-                        ),
-                      ),
-                      
+                      /* submit buttom */
                       Container(
                         margin: EdgeInsets.all(25),
                         child: OutlinedButton(
@@ -99,17 +203,7 @@ class _SignUpState extends State<SignUp>{
                                 TextStyle(fontSize: 20.0, color: Colors.purple),
                           ),
                           onPressed: () {
-                            final String email = emailController.text.trim();
-                            final String password = passwordController.text.trim();
-
-                            if(email.isEmpty){
-                              print("Email is Empty");
-                            } else {
-                              if(password.isEmpty){
-                                print("Password is Empty");
-                              } else {
-                              }
-                            }
+                            validation();
                           },
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.purple, width: 1.3),
@@ -128,45 +222,36 @@ class _SignUpState extends State<SignUp>{
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        
                         child: Icon(
-                          Icons.facebook_outlined, 
+                          Icons.facebook_outlined,
                           color: Colors.white,
                           size: 36.0,
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        
                         child: Image.asset(
-                        'assets/images/twitter-icon.png',
-                        width: 36.0,
-                        height: 36.0,
-                    ),
+                          'assets/images/twitter-icon.png',
+                          width: 36.0,
+                          height: 36.0,
+                        ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        
                         child: Image.asset(
-                        'assets/images/google-plus-icon.png',
-                        width: 36.0,
-                        height: 36.0,
-                    ),
+                          'assets/images/google-plus-icon.png',
+                          width: 36.0,
+                          height: 36.0,
+                        ),
                       ),
                     ),
                   ],
@@ -189,7 +274,7 @@ class _SignUpState extends State<SignUp>{
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>Login()),
+                        MaterialPageRoute(builder: (context) => Login()),
                       );
                     },
                     style: OutlinedButton.styleFrom(
@@ -217,5 +302,3 @@ class _SignUpState extends State<SignUp>{
     );
   }
 }
-
-
