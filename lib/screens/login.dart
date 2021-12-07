@@ -1,16 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_likeevent/screens/signUp.dart';
+import 'package:flutter_application_likeevent/screens/valide.dart';
 //import 'package:twitter_login/twitter_login.dart';
-
 
 class Login extends StatefulWidget {
   @override
-  _LoginState createState()=>_LoginState();
+  _LoginState createState() => _LoginState();
 }
-class _LoginState extends State<Login>{
-  final emailController = new TextEditingController();
-  final passwordController = new TextEditingController();
+
+class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
   bool? isChecked = false;
 
   @override
@@ -20,7 +23,7 @@ class _LoginState extends State<Login>{
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            height:MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -28,7 +31,7 @@ class _LoginState extends State<Login>{
                   height: 50,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 30.0,bottom:30.0),
+                  padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
                   child: Text(
                     'Login',
                     style: TextStyle(
@@ -48,8 +51,10 @@ class _LoginState extends State<Login>{
                         height: 100,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          controller: email,
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             icon: Icon(Icons.email_outlined),
@@ -61,6 +66,7 @@ class _LoginState extends State<Login>{
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          controller: password,
                           decoration: const InputDecoration(
                             icon: Icon(Icons.lock_outline),
                             border: UnderlineInputBorder(),
@@ -78,7 +84,8 @@ class _LoginState extends State<Login>{
                               });
                             },
                             checkColor: Colors.white,
-                            overlayColor: MaterialStateProperty.all(Colors.purple),
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.purple),
                             fillColor: MaterialStateProperty.all(Colors.purple),
                           ),
                           const Text(
@@ -98,17 +105,7 @@ class _LoginState extends State<Login>{
                                 TextStyle(fontSize: 20.0, color: Colors.purple),
                           ),
                           onPressed: () {
-                            final String email = emailController.text.trim();
-                            final String password = passwordController.text.trim();
-
-                            if(email.isEmpty){
-                              print("Email is Empty");
-                            } else {
-                              if(password.isEmpty){
-                                print("Password is Empty");
-                              } else {
-                              }
-                            }
+                            validation();
                           },
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.purple, width: 1.3),
@@ -126,32 +123,26 @@ class _LoginState extends State<Login>{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                      GestureDetector(
-                      onTap: () {
-                        
-                      },
+                    GestureDetector(
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        
                         child: Icon(
-                          Icons.facebook_outlined, 
+                          Icons.facebook_outlined,
                           color: Colors.white,
                           size: 36.0,
                         ),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        
                         child: Image.asset(
-                        'assets/images/twitter-icon.png',
-                        width: 36.0,
-                        height: 36.0,
-                    ),
+                          'assets/images/twitter-icon.png',
+                          width: 36.0,
+                          height: 36.0,
+                        ),
                       ),
                     ),
                     GestureDetector(
@@ -161,14 +152,13 @@ class _LoginState extends State<Login>{
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         child: Image.asset(
-                        'assets/images/google-plus-icon.png',
-                        width: 36.0,
-                        height: 36.0,
-                    ),
+                          'assets/images/google-plus-icon.png',
+                          width: 36.0,
+                          height: 36.0,
+                        ),
                       ),
                     ),
                   ],
-
                 ),
                 Text(
                   "OR",
@@ -188,7 +178,7 @@ class _LoginState extends State<Login>{
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>SignUp()),
+                        MaterialPageRoute(builder: (context) => SignUp()),
                       );
                     },
                     style: OutlinedButton.styleFrom(
@@ -214,6 +204,107 @@ class _LoginState extends State<Login>{
         ),
       ),
     );
+  }
+
+  Future loginUser() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.text.trim(),
+        password: password.text.trim(),
+      );
+    } on FirebaseException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+            backgroundColor: Colors.grey[200],
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'No User Found !',
+                  style: TextStyle(
+                    color: Colors.purple, fontWeight: FontWeight.bold),
+                )
+              ],
+            )));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+            backgroundColor: Colors.grey[200],
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Wrong Password !',
+                    style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
+              ],
+            )));
+      }
+    } finally {
+      setState(() {
+        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Valide()),
+                      );
+      });
+    }
+  }
+
+  void validation() {
+    if ((email.text.trim().isEmpty) && (password.text.trim().isEmpty)) {
+      ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('All Fields are Empty !',
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
+            ],
+          )));
+      return;
+    }
+    if (email.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Please Enter Your Email !',
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
+            ],
+          )));
+      return ;
+    } else if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email.text)) {
+      ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Please Enter a valid Email !',
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
+            ],
+          )));
+    }
+    // ignore: unnecessary_null_comparison
+    else if (password.text.trim().isEmpty || password.text.trim() == null) {
+      // ignore: deprecated_member_use
+      ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+          backgroundColor: Colors.grey[200],
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Please Enter Your Passowrd !',
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
+            ],
+          )));
+      return;
+    } else {
+      loginUser();
+    }
   }
 }
 /*
@@ -253,3 +344,5 @@ class _LoginState extends State<Login>{
     }
   }
 }*/
+
+

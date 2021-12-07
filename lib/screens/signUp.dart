@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_likeevent/screens/login.dart';
+
 /* sign Up page */
 class SignUp extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
   TextEditingController userName = new TextEditingController();
+  bool _isVisible = false;
   late UserCredential userCredential;
 
   /* fct to send data to the firebase */
@@ -21,15 +23,16 @@ class _SignUpState extends State<SignUp> {
     try {
       userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: email.text, password: password.text);
+              email: email.text.trim(), password: password.text.trim());
       /* collect use data */
       await FirebaseFirestore.instance.collection('userData').add({
         'userName': userName.text.trim(),
-        'email': email.text.trim(),
-        'password': password.text.trim(),
+        'email': email.text,
+        'password': password.text,
       });
     } /* in case of an error of email or password*/
     on FirebaseException catch (e) {
+      print(e.code);
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
             backgroundColor: Colors.grey[200],
@@ -38,7 +41,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Text('weak password !',
                     style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold))
+                        color: Colors.purple, fontWeight: FontWeight.bold))
               ],
             )));
       } else if (e.code == 'email-already-in-use') {
@@ -49,7 +52,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Text('The account is already exist ! ',
                     style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold))
+                        color: Colors.purple, fontWeight: FontWeight.bold))
               ],
             )));
       }
@@ -57,6 +60,7 @@ class _SignUpState extends State<SignUp> {
       print(e);
     }
   }
+
   /* fct to validate data in the submission */
   /* the error appear in the snack bare */
   /* trim() fct to remove the espace ' '  */
@@ -68,8 +72,8 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(' Please Enter your username!',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
       return;
@@ -81,8 +85,8 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(' Please Enter your email!',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
       return;
@@ -97,8 +101,8 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Please Enter a valid Email !',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
       return;
@@ -111,8 +115,8 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(' Please Enter your Password !',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold))
+                  style: TextStyle(
+                      color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
 
@@ -121,6 +125,7 @@ class _SignUpState extends State<SignUp> {
       sendData();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,6 +133,7 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
+            height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -185,8 +191,18 @@ class _SignUpState extends State<SignUp> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          obscureText: !_isVisible,
                           controller: password,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isVisible = !_isVisible;
+                                  });
+                                },
+                                icon: Icon(_isVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
                             icon: Icon(Icons.enhanced_encryption_outlined),
                             border: UnderlineInputBorder(),
                             labelText: 'Enter your Password',
