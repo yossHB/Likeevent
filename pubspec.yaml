@@ -43,9 +43,10 @@ dependencies:
 
 
   firebase_core: ^1.10.0
-  twitter_login: ^4.0.1
+  # twitter_login: ^4.0.1 
+  # google_sign_in: ^5.1.0
   # flutter_facebook: ^1.0.0
-  
+  # flutter_facebook_login: ^3.0.0
   # flutter_login: ^3.0.0
 
 

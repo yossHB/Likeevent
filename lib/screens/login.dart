@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_likeevent/models/user_model.dart';
-import 'package:flutter_application_likeevent/screens/signUp.dart';
-import 'package:flutter_application_likeevent/screens/valide.dart';
+import '/models/user_model.dart';
+import 'signUp.dart';
+import 'Main_page.dart';
+
+// import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 //import 'package:twitter_login/twitter_login.dart';
 
 class Login extends StatefulWidget {
@@ -113,7 +115,9 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        // await _loginfb();
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         child: Icon(
@@ -136,6 +140,7 @@ class _LoginState extends State<Login> {
                     ),
                     GestureDetector(
                       onTap: () async {
+                        //SignInDemo();
                         //await twitterLogin();
                       },
                       child: Container(
@@ -233,9 +238,9 @@ class _LoginState extends State<Login> {
     } finally {
       setState(() {
         Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Valide()),
-      );
+          context,
+          MaterialPageRoute(builder: (context) => MainPage()),
+        );
       });
     }
   }
@@ -277,8 +282,7 @@ class _LoginState extends State<Login> {
                       color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
-    }
-    else if (password.text.trim().isEmpty) {
+    } else if (password.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
           backgroundColor: Colors.grey[200],
           content: Row(
@@ -293,6 +297,32 @@ class _LoginState extends State<Login> {
       return await loginUser();
     }
   }
+/*
+  static final FacebookLogin facebookSignIn = new FacebookLogin();
+
+  Future<Null> _loginfb() async {
+    final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
+
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final FacebookAccessToken accessToken = result.accessToken;
+        print('''
+         Logged in!
+         
+         Token: ${accessToken.token}
+         User id: ${accessToken.userId}
+         Expires: ${accessToken.expires}
+         Permissions: ${accessToken.permissions}
+         Declined permissions: ${accessToken.declinedPermissions}
+         ''');
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print('Login cancelled by the user.');
+        break;
+      case FacebookLoginStatus.error:
+        print('Something went wrong with the login process.\n'
+            'Here\'s the error Facebook gave us: ${result.errorMessage}');
+        break;
+    }
+  }*/
 }
-
-

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_likeevent/screens/login.dart';
-import 'package:flutter_application_likeevent/screens/signUp.dart';
+import '/screens/login.dart';
+import '/screens/signUp.dart';
 
 class WelcomScreen extends StatelessWidget {
   @override
