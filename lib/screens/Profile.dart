@@ -130,7 +130,6 @@ class Profile extends StatelessWidget {
       ),
     );
   }
-  }
   
   Container profileTile(BuildContext context, {required Profile profile}) {
     var screenSize = MediaQuery.of(context).size;
