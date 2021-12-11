@@ -84,6 +84,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(height: MediaQuery.of(context).size.width* 0.01,),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child:Row(

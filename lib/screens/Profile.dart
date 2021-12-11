@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'catalog.dart';
+import 'package:flutter_application_likeevent/models/profile_model.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -104,273 +105,12 @@ class Profile extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: screenSize.height * 0.05,
                 ),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'For Today',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.purple,
-                                ),
-                              ),
-                              Text(
-                                '+5 more',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: screenSize.height * 0.05,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Reserved',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.purple,
-                                ),
-                              ),
-                              Text(
-                                '+5 more',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: screenSize.height * 0.05,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Payed',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.purple,
-                                ),
-                              ),
-                              Text(
-                                '+5 more',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: screenSize.height * 0.05,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(22.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Saved',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.purple,
-                                ),
-                              ),
-                              Text(
-                                '+5 more',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 15.0),
-                            clipBehavior: Clip.antiAlias,
-                            height: screenSize.height * 0.2,
-                            width: screenSize.width * 0.3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              image: DecorationImage(
-                                image: AssetImage('images/loup.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: screenSize.height * 0.05,
-                    ),
-                  ],
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: profileList.length,
+                  itemBuilder: (BuildContext context, index) =>
+                    profileTile(context, profile: profileList[index]),
                 ),
               ],
             ),
@@ -390,4 +130,69 @@ class Profile extends StatelessWidget {
       ),
     );
   }
+  }
+  
+  Container profileTile(BuildContext context, {required Profile profile}) {
+    var screenSize = MediaQuery.of(context).size;
+    var images=profile.image;
+   
+    return Container(
+      child: 
+      Column(
+        children: [
+          Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'profile.title',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.purple,
+                      ),
+                    ),
+                    Text(
+                      '+5 more',
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ]),
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                for ( var image in images )
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 15.0),
+                    clipBehavior: Clip.antiAlias,
+                    height: screenSize.height * 0.2,
+                    width: screenSize.width * 0.3,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/$image'),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ]
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: screenSize.height * 0.05,
+          ),
+        ],
+      ),
+    );
+  }
+
 }
