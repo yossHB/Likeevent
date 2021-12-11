@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_likeevent/screens/login.dart';
 import 'package:flutter_application_likeevent/screens/signUp.dart';
 
-
-class SecondScreen extends StatelessWidget {
+class WelcomScreen extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: Container(
           child: Column(
@@ -102,7 +99,3 @@ class SecondScreen extends StatelessWidget {
 
   gradient(LinearGradient linearGradient) {}
 }
-
-
-
-

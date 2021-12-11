@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_likeevent/models/user_model.dart';
 import 'package:flutter_application_likeevent/screens/signUp.dart';
 import 'package:flutter_application_likeevent/screens/valide.dart';
 //import 'package:twitter_login/twitter_login.dart';
@@ -14,8 +15,8 @@ class _LoginState extends State<Login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
-  bool? isChecked = false;
-
+  UserModel? user;
+  bool _isVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,35 +67,23 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
+                          obscureText: !_isVisible,
                           controller: password,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isVisible = !_isVisible;
+                                  });
+                                },
+                                icon: Icon(_isVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
                             icon: Icon(Icons.lock_outline),
                             border: UnderlineInputBorder(),
                             labelText: 'Enter your Password',
                           ),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: isChecked,
-                            onChanged: (value) {
-                              setState(() {
-                                isChecked = value;
-                              });
-                            },
-                            checkColor: Colors.white,
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.purple),
-                            fillColor: MaterialStateProperty.all(Colors.purple),
-                          ),
-                          const Text(
-                            'Remember me',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
                       ),
                       Container(
                         margin: EdgeInsets.all(25),
@@ -104,8 +93,8 @@ class _LoginState extends State<Login> {
                             style:
                                 TextStyle(fontSize: 20.0, color: Colors.purple),
                           ),
-                          onPressed: () {
-                            validation();
+                          onPressed: () async {
+                            user = await validation();
                           },
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.purple, width: 1.3),
@@ -208,10 +197,13 @@ class _LoginState extends State<Login> {
 
   Future loginUser() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential result =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email.text.trim(),
         password: password.text.trim(),
       );
+      User? user = result.user;
+      return UserModel(email: user?.email, id: user?.uid);
     } on FirebaseException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
@@ -222,7 +214,7 @@ class _LoginState extends State<Login> {
                 Text(
                   'No User Found !',
                   style: TextStyle(
-                    color: Colors.purple, fontWeight: FontWeight.bold),
+                      color: Colors.purple, fontWeight: FontWeight.bold),
                 )
               ],
             )));
@@ -234,21 +226,21 @@ class _LoginState extends State<Login> {
               children: [
                 Text('Wrong Password !',
                     style: TextStyle(
-                      color: Colors.purple, fontWeight: FontWeight.bold))
+                        color: Colors.purple, fontWeight: FontWeight.bold))
               ],
             )));
       }
     } finally {
       setState(() {
         Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Valide()),
-                      );
+        context,
+        MaterialPageRoute(builder: (context) => Valide()),
+      );
       });
     }
   }
 
-  void validation() {
+  Future<UserModel?> validation() async {
     if ((email.text.trim().isEmpty) && (password.text.trim().isEmpty)) {
       ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
           backgroundColor: Colors.grey[200],
@@ -260,7 +252,6 @@ class _LoginState extends State<Login> {
                       color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
-      return;
     }
     if (email.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
@@ -273,7 +264,6 @@ class _LoginState extends State<Login> {
                       color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
-      return ;
     } else if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email.text)) {
@@ -288,9 +278,7 @@ class _LoginState extends State<Login> {
             ],
           )));
     }
-    // ignore: unnecessary_null_comparison
-    else if (password.text.trim().isEmpty || password.text.trim() == null) {
-      // ignore: deprecated_member_use
+    else if (password.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
           backgroundColor: Colors.grey[200],
           content: Row(
@@ -301,48 +289,10 @@ class _LoginState extends State<Login> {
                       color: Colors.purple, fontWeight: FontWeight.bold))
             ],
           )));
-      return;
     } else {
-      loginUser();
+      return await loginUser();
     }
   }
 }
-/*
- Future twitterLogin() async {
-    final twitterLogin = TwitterLogin(
-      /// Consumer API keys
-      apiKey: API_KEY,
-
-      /// Consumer API Secret keys
-      apiSecretKey: API_SECRET_KEY,
-
-      /// Registered Callback URLs in TwitterApp
-      /// Android is a deeplink
-      /// iOS is a URLScheme
-      redirectURI: 'example://',
-    );
-
-    /// Forces the user to enter their credentials
-    /// to ensure the correct users account is authorized.
-    /// If you want to implement Twitter account switching, set [force_login] to true
-    /// login(forceLogin: true);
-    final authResult = await twitterLogin.login();
-    switch (authResult.status) {
-      case TwitterLoginStatus.loggedIn:
-        // success
-        print('====== Login success ======');
-        break;
-      case TwitterLoginStatus.cancelledByUser:
-        // cancel
-        print('====== Login cancel ======');
-        break;
-      case TwitterLoginStatus.error:
-      case null:
-        // error
-        print('====== Login error ======');
-        break;
-    }
-  }
-}*/
 
 

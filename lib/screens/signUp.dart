@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_likeevent/screens/login.dart';
+import 'package:flutter_application_likeevent/screens/valide.dart';
 
 /* sign Up page */
 class SignUp extends StatefulWidget {
@@ -32,7 +33,6 @@ class _SignUpState extends State<SignUp> {
       });
     } /* in case of an error of email or password*/
     on FirebaseException catch (e) {
-      print(e.code);
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
             backgroundColor: Colors.grey[200],
@@ -58,6 +58,11 @@ class _SignUpState extends State<SignUp> {
       }
     } catch (e) {
       print(e);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Valide()),
+      );
+
     }
   }
 
@@ -203,7 +208,7 @@ class _SignUpState extends State<SignUp> {
                                 icon: Icon(_isVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off)),
-                            icon: Icon(Icons.enhanced_encryption_outlined),
+                            icon: Icon(Icons.lock_outline),
                             border: UnderlineInputBorder(),
                             labelText: 'Enter your Password',
                           ),
