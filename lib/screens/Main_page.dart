@@ -82,103 +82,117 @@ class _MainPageState extends State<MainPage> {
           child: Container(
             height: screenSize.height*eventList.length/3.5,
             child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    color: Colors.white,
-                    child: DropdownButton(
-                      dropdownColor: Colors.white,
-                      value: _value,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text(
-                            "Categorie",
-                            style: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child:Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal:screenSize.width*0.02),
+                          margin: EdgeInsets.all(screenSize.width*0.01),
+                          color: Colors.white,
+                          child: DropdownButton(
+                            dropdownColor: Colors.white,
+                            value: _value,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text(
+                                  "Categorie",
+                                  style: TextStyle(
+                                      color: Colors.purple,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                value: 1,
+                              ),
+                            ],
                           ),
-                          value: 1,
                         ),
-                        DropdownMenuItem(
-                          child: Text("Second Item"),
-                          value: 2,
-                        )
-                      ],
-                      hint: Text("Select item")
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: DropdownButton(
-                      dropdownColor: Colors.white,
-                      value: _value,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text(
-                            "Latest",
-                            style: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal:screenSize.width*0.02),
+                          margin: EdgeInsets.all(screenSize.width*0.01),
+                          color: Colors.white,
+                          child: DropdownButton(
+                            dropdownColor: Colors.white,
+                            value: _value,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text(
+                                  "Latest",
+                                  style: TextStyle(
+                                      color: Colors.purple,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                value: 1,
+                              ),
+                            ],
                           ),
-                          value: 1,
                         ),
-                        DropdownMenuItem(
-                          child: Text("Second Item"),
-                          value: 2,
-                        )
-                      ],
-                      hint: Text("Select item")
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: DropdownButton(
-                      dropdownColor: Colors.white,
-                      value: _value,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text(
-                            "Today",
-                            style: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
+                        Container(
+                          margin: EdgeInsets.all(screenSize.width*0.01),
+                          padding: EdgeInsets.symmetric(horizontal:screenSize.width*0.02),
+                          color: Colors.white,
+                          child: DropdownButton(
+                            dropdownColor: Colors.white,
+                            value: _value,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text(
+                                  "Today",
+                                  style: TextStyle(
+                                      color: Colors.purple,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                value: 1,
+                              ),
+                            ],
                           ),
-                          value: 1,
                         ),
-                        DropdownMenuItem(
-                          child: Text("Second Item"),
-                          value: 2,
-                        )
-                      ],
-                      hint: Text("Select item")
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal:screenSize.width*0.02),
+                          margin: EdgeInsets.all(screenSize.width*0.01),
+                          color: Colors.white,
+                          child: DropdownButton(
+                            dropdownColor: Colors.white,
+                            value: _value,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text(
+                                  "Favories",
+                                  style: TextStyle(
+                                      color: Colors.purple,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                value: 1,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]
                     ),
-                  ),
-                ]
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: eventList.length,
-                itemBuilder: (BuildContext context, index) =>
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: eventList.length,
+                  itemBuilder: (BuildContext context, index) =>
                     eventTile(context, event: eventList[index]),
-              ),
-            ],
+                ),
+              ],
+            ),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple,
+                Colors.deepPurple,
+                Colors.purple,
+                Colors.deepPurple,
+              ],
+            )),
           ),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple,
-              Colors.deepPurple,
-              Colors.purple,
-              Colors.deepPurple,
-            ],
-          )),
-        ),
         ),
       ),
 
