@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            height: screenSize.height*eventList.length/2.5,
+            height: screenSize.height*eventList.length/3.5,
             child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -228,7 +228,7 @@ class _MainPageState extends State<MainPage> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 1.0),
                   clipBehavior: Clip.antiAlias,
-                  height: screenSize.height * 0.3,
+                  height: screenSize.height * 0.2,
                   width: screenSize.width * 0.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
