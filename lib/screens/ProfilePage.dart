@@ -137,7 +137,7 @@ class _ProfileState extends State<Profile> {
     );
   }
   
-  Container profileTile(BuildContext context, {required Profile profile}) {
+  Container profileTile(BuildContext context, {required Profiles profile}) {
     var screenSize = MediaQuery.of(context).size;
     var images=profile.image;
    

@@ -1,11 +1,11 @@
-class Profile {
+class Profiles {
   String title;
   List<String> image = [];
-  Profile({required this.title, required this.image});
+  Profiles({required this.title, required this.image});
 }
 
-final profileList = <Profile>[
-  Profile(
+final profileList = <Profiles>[
+  Profiles(
     title: 'For Today',
     image: [
       'loup.png',
@@ -17,15 +17,15 @@ final profileList = <Profile>[
       'loup.png'
     ],
   ),
-  Profile(
+  Profiles(
     title: 'Reserved',
     image: ['loup.png', 'loup.png', 'loup.png'],
   ),
-  Profile(
+  Profiles(
     title: 'Payed',
     image: ['loup.png', 'loup.png', 'loup.png', 'loup.png'],
   ),
-  Profile(
+  Profiles(
     title: 'Saved',
     image: ['loup.png', 'loup.png', 'loup.png'],
   ),
