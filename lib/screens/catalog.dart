@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-
 import 'Main_page.dart';
 import 'ProfilePage.dart';
+import 'home.dart';
 
-class FifthRoute extends StatelessWidget {
-  const FifthRoute({Key? key}) : super(key: key);
+class FifthRoute extends StatefulWidget {
+  const FifthRoute({ Key? key }) : super(key: key);
 
+  @override
+  _FifthRouteState createState() => _FifthRouteState();
+}
+
+class _FifthRouteState extends State<FifthRoute> {
+  
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    return Scaffold(
+        return Scaffold(
       body: SingleChildScrollView(
         child: Container(
           height: screenSize.height,
@@ -173,6 +179,25 @@ class FifthRoute extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
+        //onTap: onTabTapped,
+        onTap: (int index) {
+          switch (index) {
+      case 0:
+        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Profile()),
+                      );
+        break;
+      case 1:
+        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => WelcomScreen()),
+                      );
+        break;
+    }
+          
+        },
+        type: BottomNavigationBarType.fixed,
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -188,5 +213,6 @@ class FifthRoute extends StatelessWidget {
         ],
       ),
     );
+    
   }
 }
