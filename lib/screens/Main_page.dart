@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/event_model.dart';
 import 'catalog.dart';
+import 'film_template.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({ Key? key }) : super(key: key);
@@ -207,10 +208,6 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.favorite),
             label: 'Favorite',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
         ],
         selectedItemColor: Colors.purple,
       ),
@@ -240,7 +237,14 @@ class _MainPageState extends State<MainPage> {
             child: Row(
                 children: [
                   for ( var image in images )
-                Container(
+                  new GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Film(image)),
+                      );
+                    },
+                    child: new Container(
                   margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 1.0),
                   clipBehavior: Clip.antiAlias,
                   height: screenSize.height * 0.2,
@@ -252,7 +256,7 @@ class _MainPageState extends State<MainPage> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                ),
+                ),),
                 ]
             ),
           ),

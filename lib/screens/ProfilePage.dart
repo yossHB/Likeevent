@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'catalog.dart';
 import '../models/profile_model.dart';
-
+import 'film_template.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({ Key? key }) : super(key: key);
+  const Profile({Key? key}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
-  
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -116,7 +115,7 @@ class _ProfileState extends State<Profile> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: profileList.length,
                   itemBuilder: (BuildContext context, index) =>
-                    profileTile(context, profile: profileList[index]),
+                      profileTile(context, profile: profileList[index]),
                 ),
               ],
             ),
@@ -136,14 +135,13 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
-  
+
   Container profileTile(BuildContext context, {required Profiles profile}) {
     var screenSize = MediaQuery.of(context).size;
-    var images=profile.image;
-   
+    var images = profile.image;
+
     return Container(
-      child: 
-      Column(
+      child: Column(
         children: [
           Container(
             color: Colors.white,
@@ -153,7 +151,7 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'profile.title',
+                      profile.title,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.purple,
@@ -171,24 +169,35 @@ class _ProfileState extends State<Profile> {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                for ( var image in images )
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 15.0),
-                    clipBehavior: Clip.antiAlias,
-                    height: screenSize.height * 0.2,
-                    width: screenSize.width * 0.3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/$image'),
-                        fit: BoxFit.fill,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Row(children: [
+                for (var image in images)
+                  new GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Film(image)),
+                      );
+                    },
+                    child: new Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 15.0),
+                      clipBehavior: Clip.antiAlias,
+                      height: screenSize.height * 0.2,
+                      width: screenSize.width * 0.3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/$image'),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),
-                ]
+              ]),
             ),
           ),
           SizedBox(
@@ -199,5 +208,4 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
-
 }
