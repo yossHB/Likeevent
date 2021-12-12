@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_likeevent/models/event_model.dart';
+import '../models/event_model.dart';
 import 'catalog.dart';
 
 class MainPage extends StatefulWidget {
