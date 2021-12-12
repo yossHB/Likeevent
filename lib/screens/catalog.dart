@@ -17,7 +17,6 @@ class FifthRoute extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: screenSize.height,
                 width: screenSize.width * 0.25,
                 color: Colors.deepPurple,
                 child: Column(
@@ -59,7 +58,7 @@ class FifthRoute extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(screenSize.width * 0.15),
+                margin: EdgeInsets.symmetric(horizontal: screenSize.width * 0.2),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
