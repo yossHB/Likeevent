@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_likeevent/screens/valide.dart';
 import '../models/event_model.dart';
 import 'catalog.dart';
 import 'film_template.dart';
@@ -199,6 +200,23 @@ class _MainPageState extends State<MainPage> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (int index) {
+          switch (index) {
+      case 0:
+        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainPage()),
+                      );
+        break;
+      case 1:
+        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Valide()),
+                      );
+        break;
+    }
+        },
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

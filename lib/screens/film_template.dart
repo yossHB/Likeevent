@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_likeevent/screens/payement.dart';
 
 class Film extends StatefulWidget {
   final String image;
@@ -10,7 +11,9 @@ class Film extends StatefulWidget {
 
 class _FilmState extends State<Film> {
   get image => widget.image;
-
+  bool? isCheckedNotif = true;
+  bool? isCheckedFav = true;
+  late var colorFav=Colors.grey.shade700;
   @override
   Widget build(
     BuildContext context,
@@ -133,13 +136,18 @@ class _FilmState extends State<Film> {
                                               MaterialStateProperty.all(
                                                   Colors.purple),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Payement()),
+                      );
+                                        },
                                         child: Text(
                                           '  Payement ',
                                           style: TextStyle(
                                             color: Colors.deepPurple[50],
-                                          ), 
-                                        ), 
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -210,18 +218,43 @@ class _FilmState extends State<Film> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        onTap: (int index) {
+          switch (index) {
+            case 0:
+              isCheckedFav = isCheckedFav!;
+              colorFav = decideColor(isCheckedFav);
+              break;
+            case 1:
+              isCheckedNotif = isCheckedNotif!;
+              colorFav = decideColor(isCheckedFav);
+              break;
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(
+              Icons.favorite,
+              color: colorFav,
+            ),
             label: 'Favorite',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: Icon(
+              Icons.notifications,
+              color: colorFav,
+            ),
             label: 'Notifications',
           ),
         ],
-        selectedItemColor: Colors.purple,
       ),
     ); //scaffold
   }
+}
+
+Color decideColor(bool? isChecked) {
+  if (isChecked == true) {
+    return Colors.purple;
+  }
+  return Colors.grey.shade700;
 }

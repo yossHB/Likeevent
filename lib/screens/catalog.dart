@@ -179,7 +179,6 @@ class _FifthRouteState extends State<FifthRoute> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
-        //onTap: onTabTapped,
         onTap: (int index) {
           switch (index) {
       case 0:
@@ -195,7 +194,6 @@ class _FifthRouteState extends State<FifthRoute> {
                       );
         break;
     }
-          
         },
         type: BottomNavigationBarType.fixed,
         items: [

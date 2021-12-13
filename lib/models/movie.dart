@@ -14,11 +14,17 @@ class Movie {
 
 
 final movieList = <Movie>[
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
-  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: '2.jpg'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
+];
+
+final movieList12 = <Movie>[
+  Movie(title: 'lion king', time: '99', description: 'fidchgffhgf', image: 'loup.png'),
 ];
