@@ -196,13 +196,7 @@ class _PayementState extends State<Payement> {
       onSurface: Colors.grey,
     ),
           ),
-                        
-                      )
-                         
-                       
-                     
-                  
-                    
+                      ),
                    ),
               ],
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/screens/login.dart';
+import 'package:flutter_application_likeevent/screens/login_link.dart';
 import '/screens/signUp.dart';
 
 class WelcomScreen extends StatelessWidget {
@@ -40,7 +40,7 @@ class WelcomScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => LinkLogin()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

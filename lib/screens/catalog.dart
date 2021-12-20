@@ -1,21 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'Main_page.dart';
 import 'ProfilePage.dart';
+// import 'facebook.dart';
+import 'google.dart';
 import 'home.dart';
 
 class FifthRoute extends StatefulWidget {
-  const FifthRoute({ Key? key }) : super(key: key);
+  const FifthRoute({Key? key}) : super(key: key);
 
   @override
   _FifthRouteState createState() => _FifthRouteState();
 }
 
 class _FifthRouteState extends State<FifthRoute> {
-  
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-        return Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Container(
           height: screenSize.height,
@@ -64,7 +67,8 @@ class _FifthRouteState extends State<FifthRoute> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: screenSize.width * 0.2),
+                margin:
+                    EdgeInsets.symmetric(horizontal: screenSize.width * 0.2),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -179,21 +183,36 @@ class _FifthRouteState extends State<FifthRoute> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
-        onTap: (int index) {
+        onTap: (int index) async {
           switch (index) {
-      case 0:
-        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Profile()),
-                      );
-        break;
-      case 1:
-        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => WelcomScreen()),
-                      );
-        break;
-    }
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Profile()),
+              );
+              break;
+            case 1:
+              try{
+                final provider =
+                  Provider.of<GoogleSingInProvider>(context, listen: false);
+                  provider.logOut();
+                Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+              } /*on Exception {
+                final provider =
+                  Provider.of<FacebookSignInController>(context, listen: false);
+                  provider.logOut();
+                Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+              }*/
+              finally {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+              }
+              break;
+              
+          }
         },
         type: BottomNavigationBarType.fixed,
         items: [
@@ -211,6 +230,5 @@ class _FifthRouteState extends State<FifthRoute> {
         ],
       ),
     );
-    
   }
 }

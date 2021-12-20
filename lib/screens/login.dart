@@ -1,10 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+// import 'facebook.dart';
+import 'google.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '/models/user_model.dart';
 import 'signUp.dart';
 import 'Main_page.dart';
-
+//import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 // import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 //import 'package:twitter_login/twitter_login.dart';
 
@@ -19,6 +24,9 @@ class _LoginState extends State<Login> {
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
   UserModel? user;
   bool _isVisible = false;
+
+ // set _accessToken(AccessToken? _accessToken) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,44 +122,68 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    GestureDetector(
-                      onTap: () async {
-                        // await _loginfb();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Icon(
+                    IconButton(
+                        onPressed: () async {
+                          //await signInWithFacebook();
+                         /* final provider = Provider.of<FacebookSignInController>(
+                              context,
+                              listen: false);
+                          provider.login();*/
+                        },
+                        icon: Icon(
                           Icons.facebook_outlined,
                           color: Colors.white,
                           size: 36.0,
                         ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Image.asset(
+                        iconSize: 40,
+                        color: Colors.green),
+                    IconButton(
+                        onPressed: () async {
+                          /*
+                        final twitterLogin = TwitterLogin(  
+                // Consumer API keys 
+                apiKey: 'xxxx',
+                // Consumer API Secret keys 
+                apiSecretKey: 'xxxx',
+                // Registered Callback URLs in TwitterApp
+                // Android is a deeplink
+                // iOS is a URLScheme
+                redirectURI: 'example://',
+              );
+              final authResult = twitterLogin.login();
+              switch (authResult.status) {
+                case TwitterLoginStatus.loggedIn:
+                  // success
+                  break;
+                case TwitterLoginStatus.cancelledByUser:
+                  // cancel
+                  break;
+                case TwitterLoginStatus.error:
+                  // error
+                  break;
+              }*/
+                        },
+                        icon: Image.asset(
                           'assets/images/twitter-icon.png',
                           width: 36.0,
                           height: 36.0,
                         ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        //SignInDemo();
-                        //await twitterLogin();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Image.asset(
+                        iconSize: 40,
+                        color: Colors.green),
+                    IconButton(
+                        onPressed: () {
+                          final provider = Provider.of<GoogleSingInProvider>(
+                              context,
+                              listen: false);
+                          provider.googleLogin();
+                        },
+                        icon: Image.asset(
                           'assets/images/google-plus-icon.png',
                           width: 36.0,
                           height: 36.0,
                         ),
-                      ),
-                    ),
+                        iconSize: 40,
+                        color: Colors.green),
                   ],
                 ),
                 Text(
@@ -297,32 +329,27 @@ class _LoginState extends State<Login> {
       return await loginUser();
     }
   }
-/*
-  static final FacebookLogin facebookSignIn = new FacebookLogin();
-
-  Future<Null> _loginfb() async {
-    final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
-
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        print('''
-         Logged in!
-         
-         Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        print('Login cancelled by the user.');
-        break;
-      case FacebookLoginStatus.error:
-        print('Something went wrong with the login process.\n'
-            'Here\'s the error Facebook gave us: ${result.errorMessage}');
-        break;
+/* à fixer 
+  Future<UserCredential> signInWithFacebook() async {
+    Map<String, dynamic>? _userData;
+    final LoginResult result =
+        await FacebookAuth.instance.login(permissions: ['email']);
+         if (result.status == LoginStatus.success) {
+    _accessToken = result.accessToken;
+      // get the user data
+      // by default we get the userId, email,name and picture
+      final userData = await FacebookAuth.instance.getUserData();
+      // final userData = await FacebookAuth.instance.getUserData(fields: "email,birthday,friends,gender,link");
+      _userData = userData;
+    } else {
+      print(result.status);
+      print(result.message);
     }
+    setState(() {});
+  
+     final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(result.accessToken!.token);
+
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }*/
 }
