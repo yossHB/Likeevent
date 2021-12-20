@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Main_page.dart';
 import 'ProfilePage.dart';
-// import 'facebook.dart';
+import 'facebook.dart';
 import 'google.dart';
 import 'home.dart';
 
@@ -198,13 +198,13 @@ class _FifthRouteState extends State<FifthRoute> {
                   provider.logOut();
                 Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (_) => WelcomScreen()));
-              } /*on Exception {
+              } on Exception {
                 final provider =
                   Provider.of<FacebookSignInController>(context, listen: false);
                   provider.logOut();
                 Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (_) => WelcomScreen()));
-              }*/
+              }
               finally {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(

@@ -1,11 +1,11 @@
 import 'dart:async';
-// import 'facebook.dart';
+import 'facebook.dart';
 import 'google.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '/models/user_model.dart';
 import 'signUp.dart';
 import 'Main_page.dart';
@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
   UserModel? user;
   bool _isVisible = false;
 
- // set _accessToken(AccessToken? _accessToken) {}
+  set _accessToken(AccessToken? _accessToken) {}
 
   @override
   Widget build(BuildContext context) {
@@ -125,10 +125,10 @@ class _LoginState extends State<Login> {
                     IconButton(
                         onPressed: () async {
                           //await signInWithFacebook();
-                         /* final provider = Provider.of<FacebookSignInController>(
+                          final provider = Provider.of<FacebookSignInController>(
                               context,
                               listen: false);
-                          provider.login();*/
+                          provider.login();
                         },
                         icon: Icon(
                           Icons.facebook_outlined,
