@@ -6,6 +6,7 @@ import 'ProfilePage.dart';
 import 'facebook.dart';
 import 'google.dart';
 import 'home.dart';
+import 'twitter.dart';
 
 class FifthRoute extends StatefulWidget {
   const FifthRoute({Key? key}) : super(key: key);
@@ -192,26 +193,28 @@ class _FifthRouteState extends State<FifthRoute> {
               );
               break;
             case 1:
-              try{
+              try {
                 final provider =
-                  Provider.of<GoogleSingInProvider>(context, listen: false);
-                  provider.logOut();
+                    Provider.of<GoogleSingInProvider>(context, listen: false);
+                provider.logOut();
                 Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+                    context, MaterialPageRoute(builder: (_) => WelcomScreen()));
               } on Exception {
-                final provider =
-                  Provider.of<FacebookSignInController>(context, listen: false);
-                  provider.logOut();
+                final provider = Provider.of<FacebookSignInController>(context,
+                    listen: false);
+                provider.logOut();
                 Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => WelcomScreen()));
-              }
-              finally {
+                    context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+              } try {
+                logoutTwitter();
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+              } finally {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => WelcomScreen()));
+                    context, MaterialPageRoute(builder: (_) => WelcomScreen()));
               }
               break;
-              
           }
         },
         type: BottomNavigationBarType.fixed,

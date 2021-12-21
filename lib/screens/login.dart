@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '/models/user_model.dart';
 import 'signUp.dart';
 import 'Main_page.dart';
+import 'twitter.dart';
 //import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 // import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 //import 'package:twitter_login/twitter_login.dart';
@@ -24,8 +24,6 @@ class _LoginState extends State<Login> {
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
   UserModel? user;
   bool _isVisible = false;
-
-  set _accessToken(AccessToken? _accessToken) {}
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +123,9 @@ class _LoginState extends State<Login> {
                     IconButton(
                         onPressed: () async {
                           //await signInWithFacebook();
-                          final provider = Provider.of<FacebookSignInController>(
-                              context,
-                              listen: false);
+                          final provider =
+                              Provider.of<FacebookSignInController>(context,
+                                  listen: false);
                           provider.login();
                         },
                         icon: Icon(
@@ -139,29 +137,7 @@ class _LoginState extends State<Login> {
                         color: Colors.green),
                     IconButton(
                         onPressed: () async {
-                          /*
-                        final twitterLogin = TwitterLogin(  
-                // Consumer API keys 
-                apiKey: 'xxxx',
-                // Consumer API Secret keys 
-                apiSecretKey: 'xxxx',
-                // Registered Callback URLs in TwitterApp
-                // Android is a deeplink
-                // iOS is a URLScheme
-                redirectURI: 'example://',
-              );
-              final authResult = twitterLogin.login();
-              switch (authResult.status) {
-                case TwitterLoginStatus.loggedIn:
-                  // success
-                  break;
-                case TwitterLoginStatus.cancelledByUser:
-                  // cancel
-                  break;
-                case TwitterLoginStatus.error:
-                  // error
-                  break;
-              }*/
+                          loginTwitter();
                         },
                         icon: Image.asset(
                           'assets/images/twitter-icon.png',
