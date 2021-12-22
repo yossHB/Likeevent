@@ -141,7 +141,6 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -251,7 +250,7 @@ class _SignUpState extends State<SignUp> {
                           final provider =
                               Provider.of<FacebookSignInController>(context,
                                   listen: false);
-                          provider.login();
+                          provider.signInWithFacebook();
                         },
                         icon: Icon(
                           Icons.facebook_outlined,
