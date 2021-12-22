@@ -162,6 +162,7 @@ class _LoginState extends State<Login> {
                         color: Colors.green),
                   ],
                 ),
+                
                 Text(
                   "OR",
                   style: TextStyle(fontSize: 20.0, color: Colors.white),

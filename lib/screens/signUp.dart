@@ -2,8 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'facebook.dart';
+import 'google.dart';
 import 'login.dart';
 import 'Main_page.dart';
+import 'twitter.dart';
 
 /* sign Up page */
 class SignUp extends StatefulWidget {
@@ -241,41 +245,49 @@ class _SignUpState extends State<SignUp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Icon(
+                    IconButton(
+                        onPressed: () async {
+                          //await signInWithFacebook();
+                          final provider =
+                              Provider.of<FacebookSignInController>(context,
+                                  listen: false);
+                          provider.login();
+                        },
+                        icon: Icon(
                           Icons.facebook_outlined,
                           color: Colors.white,
                           size: 36.0,
                         ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Image.asset(
+                        iconSize: 40,
+                        color: Colors.green),
+                    IconButton(
+                        onPressed: () async {
+                          loginTwitter();
+                        },
+                        icon: Image.asset(
                           'assets/images/twitter-icon.png',
                           width: 36.0,
                           height: 36.0,
                         ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Image.asset(
+                        iconSize: 40,
+                        color: Colors.green),
+                    IconButton(
+                        onPressed: () {
+                          final provider = Provider.of<GoogleSingInProvider>(
+                              context,
+                              listen: false);
+                          provider.googleLogin();
+                        },
+                        icon: Image.asset(
                           'assets/images/google-plus-icon.png',
                           width: 36.0,
                           height: 36.0,
                         ),
-                      ),
-                    ),
+                        iconSize: 40,
+                        color: Colors.green),
                   ],
                 ),
+                
                 Text(
                   "OR",
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
