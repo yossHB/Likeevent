@@ -118,7 +118,7 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
                         ), //box
                         height: 300,
                         width: 300,
-                        child: Image.asset('assets/images/2.jpg'),
+                        child: Image.asset('assets/images/loup.png'),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
@@ -241,7 +241,7 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
                         ), //box
                         height: 300,
                         width: 300,
-                        child: Image.asset('assets/images/3.jpg'),
+                        child: Image.asset('assets/images/loup.png'),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
@@ -355,7 +355,7 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
                         ), //box
                         height: 300,
                         width: 300,
-                        child: Image.asset('assets/images/4.jpg'),
+                        child: Image.asset('assets/images/loup.png'),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
