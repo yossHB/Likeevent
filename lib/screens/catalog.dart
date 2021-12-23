@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Main_page.dart';
 import 'ProfilePage.dart';
+import 'categorie_type.dart';
 import 'facebook.dart';
 import 'google.dart';
 import 'home.dart';
@@ -73,109 +74,188 @@ class _FifthRouteState extends State<FifthRoute> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        ' Film',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Film',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Formation',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Formation',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Theatre',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Theatre',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Action',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Action',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Adventure',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Adventure',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Casino',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Casino',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Restaurents',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Restaurents',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        'Bars',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          'Bars',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Music',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Music',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Sport',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Sport',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Cartes',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Cartes',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Cafe',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Cafe',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
                       SizedBox(height: screenSize.width * 0.05),
-                      Text(
-                        ' Offers',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        child: Text(
+                          ' Offers',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TemplateCategorie()),
+                        ),
                       ),
+                      
                     ]),
               ),
             ],
