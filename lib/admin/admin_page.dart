@@ -1,13 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import '/models/movie.dart';
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
-class TemplateCategorie extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_application_likeevent/models/movie.dart';
+
+
+void main() => runApp(MaterialApp(
+      home: Film(),
+    )); //MaterialApp
+
+// ignore: use_key_in_widget_constructors
+class Film extends StatefulWidget {
   @override
-  _TemplateCategorieState createState() => _TemplateCategorieState();
+  _FilmState createState() => _FilmState();
 }
 
-class _TemplateCategorieState extends State<TemplateCategorie> {
+class _FilmState extends State<Film> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,49 +24,50 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
           style: TextStyle(
             color: Colors.purple,
             letterSpacing: 2.0,
-            fontSize: 20.0,
+            fontSize: 25.0,
           ), //textstyle
         ), //TEXT
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: GestureDetector(
-          
+          onTap: () {
+            /* Write listener code here */
+          },
           child: Icon(
             Icons.menu, // add custom icons also
-            color: Colors.purple,
+            color: Colors.cyan,
           ), //icon
-          
         ), //gesture
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.02),
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.purple,
-                  size: 21.0,
+                  Icons.notifications,
+                  color: Colors.cyan,
+                  size: 26.0,
                 ), //child
               ) //gesture
-              ), //Padding
+              ), //Padding  
           Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Icons.share_outlined,
-                  color: Colors.purple,
-                  size: 21.0,
+                  Icons.share,
+                  color: Colors.cyan,
+                  size: 26.0,
                 ), //child
               ) //gesture
-              ), //Padding
+              ), //Padding  
           Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Icons.search_outlined,
-                  color: Colors.purple,
+                  Icons.search,
+                  color: Colors.cyan,
                   size: 26.0,
                 ), //child
               ) //gesture
@@ -114,27 +122,26 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
           ),
         ),
       ), //single
+      
+      
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.arrow_back),
+            label: 'back',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            label: 'favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            label: 'Notifications',
+            label: 'notifications',
           ),
-        ],
-        selectedItemColor: Colors.purple,
+        ], 
       ),
-    
-    );
+    ); //scaffold
   }
-
   Container movieTile(BuildContext context, {required Movie movie}) {
     return Container(
       height: MediaQuery.of(context).size.width * 0.4,
@@ -145,7 +152,6 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
       child: Row(
-        //SizedBox(width: MediaQuery.of(context).size.width*0.02),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
@@ -190,16 +196,16 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
                             ),
                           ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.001),
+                              width: MediaQuery.of(context).size.width * 0.1),
                           Container(
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
-                                    Colors.deepPurple[50]),
+                                    Colors.blue[100]),
                               ),
                               onPressed: () {},
                               child: Text(
-                                'more details',
+                                'EDIT',
                                 style: TextStyle(
                                   color: Colors.purple,
                                 ), //textstyle
@@ -220,23 +226,7 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
                               ), //textstyle
                             ),
                           ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.001),
-                          Container(
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    Colors.deepPurple[50]),
-                              ),
-                              onPressed: () {},
-                              child: Text(
-                                'Reservation',
-                                style: TextStyle(
-                                  color: Colors.purple,
-                                ), //textstyle
-                              ), //text
-                            ),
-                          ),
+                          
                         ],
                       ),
                     ],
@@ -249,4 +239,6 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
       ),
     );
   }
+
 }
+
