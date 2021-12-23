@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/rendering.dart';
+import 'package:flutter_application_likeevent/models/movie.dart';
 
 class TemplateCategorie extends StatefulWidget {
   @override
@@ -16,19 +17,18 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
           style: TextStyle(
             color: Colors.purple,
             letterSpacing: 2.0,
-            fontSize: 25.0,
+            fontSize: 20.0,
           ), //textstyle
         ), //TEXT
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: GestureDetector(
-          onTap: () {
-            /* Write listener code here */
-          },
+          
           child: Icon(
             Icons.menu, // add custom icons also
-            color: Colors.cyan,
+            color: Colors.purple,
           ), //icon
+          
         ), //gesture
         actions: <Widget>[
           Padding(
@@ -36,44 +36,46 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Icons.notifications,
-                  color: Colors.cyan,
-                  size: 26.0,
+                  Icons.notifications_outlined,
+                  color: Colors.purple,
+                  size: 21.0,
                 ), //child
               ) //gesture
-              ), //Padding  
+              ), //Padding
           Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Icons.share,
-                  color: Colors.cyan,
-                  size: 26.0,
+                  Icons.share_outlined,
+                  color: Colors.purple,
+                  size: 21.0,
                 ), //child
               ) //gesture
-              ), //Padding  
+              ), //Padding
           Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Icons.search,
-                  color: Colors.cyan,
+                  Icons.search_outlined,
+                  color: Colors.purple,
                   size: 26.0,
                 ), //child
               ) //gesture
               ), //Padding
         ], //<Widget>
       ), //AppBar
+      
       body: SingleChildScrollView(
-        child: Center(       
+        child: Center(
           child: Container(
+            //height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-            // ignore: prefer_const_literals_to_create_immutables
+              // ignore: prefer_const_literals_to_create_immutables
               colors: [
                 Colors.purple,
                 Colors.deepPurple,
@@ -84,405 +86,166 @@ class _TemplateCategorieState extends State<TemplateCategorie> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                //film container
                 Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.all(30),
-                //margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
+                  padding: EdgeInsets.symmetric(vertical: 5.0),
                   color: Colors.white,
                   child: Text(
                     'FILM',
                     style: TextStyle(
                       color: Colors.purple,
-                      letterSpacing: 2.0,
-                      fontSize: 40.0,
+                      fontSize: 26.0,
                     ), //textstyle
                   ), //text
                 ), //container
-                Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ), //box
-                  margin: EdgeInsets.all(30),
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly, //toul
-                    crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ), //box
-                        height: 300,
-                        width: 300,
-                        child: Image.asset('assets/images/loup.png'),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                        crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                        children: <Widget>[
-                          Text(
-                            'Le Loup et le lion',
-                            style: TextStyle(
-                              color: Colors.purple,
-                              letterSpacing: 2.0,
-                              fontSize: 40.0,
-                            ), //textstyle
-                          ), //text
-                          SizedBox(height: 20.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                            crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                            children: <Widget>[
-                              Text(
-                                '99 min',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  letterSpacing: 2.0,
-                                  fontSize: 20.0,
-                                ), //textstyle
-                              ), //text
-                              SizedBox(width: 260.0),
-                              Container(
-                                color: Colors.white,
-                                child: ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      'more details',
-                                      style: TextStyle(
-                                        color: Colors.purple,
-                                        letterSpacing: 2.0,
-                                      ), //textstyle
-                                    ), //text
-                                ), 
-                              )
-                            ],
-                          ),    
-                          SizedBox(height: 40.0),
-                          // ignore: sized_box_for_whitespace
-                          Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                          crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                              crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                              children: <Widget>[
-                                Text(
-                                'un film réalisé par Gilles de ',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                                Text(
-                                'Maistre avec Molly Kunz',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                                Text(
-                                'Graham Greene(||).Sinopsis...',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                              ],
-                            ),   //text
-                            SizedBox(width: 20.0),
-                            Container(
-                              color: Colors.white,
-                              child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Reservation',
-                                    style: TextStyle(
-                                      color: Colors.purple,
-                                      letterSpacing: 2.0,
-                                    ), //textstyle
-                                  ), 
-                                ),  
-                              ), 
-                            ],
-                          ),  
-                        ], //widget
-                      ), //Column
-                    ], //widget
-                  ), //row
-                ), //container
-                Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ), //box
-                  margin: EdgeInsets.all(30),
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly, //toul
-                    crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ), //box
-                        height: 300,
-                        width: 300,
-                        child: Image.asset('assets/images/loup.png'),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                        crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                        children: <Widget>[
-                          Text(
-                            'Les ETERNELS',
-                            style: TextStyle(
-                              color: Colors.purple,
-                              letterSpacing: 2.0,
-                              fontSize: 40.0,
-                            ), //textstyle
-                          ), //text
-                          SizedBox(height: 20.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                            crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                            children: <Widget>[
-                              Text(
-                                '156 min',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  letterSpacing: 2.0,
-                                  fontSize: 20.0,
-                                ), //textstyle
-                              ), //text
-                              SizedBox(width: 240.0),
-                              Container(
-                                color: Colors.white,
-                                child: ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      'more details',
-                                      style: TextStyle(
-                                        color: Colors.purple,
-                                        letterSpacing: 2.0,
-                                      ), //textstyle
-                                    ), //text
-                                ), 
-                              )
-                            ],
-                          ), 
-                          SizedBox(height: 20.0),
-                          Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                          crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                              crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                              children: <Widget>[
-                                Text(
-                                'Réalisé par Chloé Zhao',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                                Text(
-                                'Avec Hassan,Brian Tyree',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                              ],
-                            ),   //text
-                            SizedBox(width: 60.0),
-                            Container(
-                              color: Colors.white,
-                              child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Reservation',
-                                    style: TextStyle(
-                                      color: Colors.purple,
-                                      letterSpacing: 2.0,
-                                    ), //textstyle
-                                  ), 
-                                ),  
-                              ), 
-                            ],
-                          ),
-                        ], //widget
-                      ), //Column
-                    ], //widget
-                  ), //row
-                ), //container
-                 Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ), //box
-                  margin: EdgeInsets.all(30),
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly, //toul
-                    crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ), //box
-                        height: 300,
-                        width: 300,
-                        child: Image.asset('assets/images/loup.png'),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                        crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                        children: <Widget>[
-                          Text(
-                            'RON DEBLOQUE',
-                            style: TextStyle(
-                              color: Colors.purple,
-                              letterSpacing: 2.0,
-                              fontSize: 40.0,
-                            ), //textstyle
-                          ), //text
-                          SizedBox(height: 20.0,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                            crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                            children: <Widget>[
-                              Text(
-                                '106 min',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  letterSpacing: 2.0,
-                                  fontSize: 20.0,
-                                ), //textstyle
-                              ), //text
-                              SizedBox(width: 240.0),
-                              Container(
-                                color: Colors.white,
-                                child: ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      'more details',
-                                      style: TextStyle(
-                                        color: Colors.purple,
-                                        letterSpacing: 2.0,
-                                      ), //textstyle
-                                    ), //text
-                                ), 
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 20.0,),
-                          Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                          crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //3ordh
-                              crossAxisAlignment: CrossAxisAlignment.start, //3ordh
-                      // ignore: prefer_const_literals_to_create_immutables
-                              children: <Widget>[
-                                Text(
-                                'Réalisé par Alessandro',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                                Text(
-                                'Carloni,Jean Philippe Vine',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                                Text(
-                                'Avec Alexis...',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    letterSpacing: 2.0,
-                                    fontSize: 20.0,
-                                  ), //textstyle
-                                ),
-                              ],
-                            ),   //text
-                            SizedBox(width: 40.0),
-                            Container(
-                              color: Colors.white,
-                              child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Reservation',
-                                    style: TextStyle(
-                                      color: Colors.purple,
-                                      letterSpacing: 2.0,
-                                    ), //textstyle
-                                  ), 
-                                ),  
-                              ), 
-                            ],
-                          ),
-                        ], //widget
-                      ), //Column
-                    ], //widget
-                  ), //row
-                ), //container
-                ], //widget
+                //boxs
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: movieList.length,
+                  itemBuilder: (BuildContext context, index) =>
+                      movieTile(context, movie: movieList[index]),
+                ),
+              ],
             ),
-          ), //column
-        ), //container
+          ),
+        ),
       ), //single
       bottomNavigationBar: BottomNavigationBar(
-        //ignore: prefer_const_literals_to_create_immutables
-        items: [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_back),
-            // ignore: deprecated_member_use
-            title: Text('back'),
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            // ignore: deprecated_member_use
-            title: Text('favorite'),
+            label: 'Favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            // ignore: deprecated_member_use
-            title: Text('notifications'),
+            label: 'Notifications',
           ),
-        ], 
+        ],
+        selectedItemColor: Colors.purple,
       ),
-    ); //scaffold
+    );
+  }
+
+  Container movieTile(BuildContext context, {required Movie movie}) {
+    return Container(
+      height: MediaQuery.of(context).size.width * 0.4,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ), //box
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+      child: Row(
+        //SizedBox(width: MediaQuery.of(context).size.width*0.02),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 1.0),
+                clipBehavior: Clip.antiAlias,
+                height: 150,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/${movie.image}'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movie.title,
+                    style: TextStyle(
+                      color: Colors.purple,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.27,
+                            child: Text(
+                              '${movie.time} min',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16.0,
+                              ), //textstyle
+                            ),
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.001),
+                          Container(
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.deepPurple[50]),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                'more details',
+                                style: TextStyle(
+                                  color: Colors.purple,
+                                ), //textstyle
+                              ), //text
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.27,
+                            child: Text(
+                              movie.description,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16.0,
+                              ), //textstyle
+                            ),
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.001),
+                          Container(
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.deepPurple[50]),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                'Reservation',
+                                style: TextStyle(
+                                  color: Colors.purple,
+                                ), //textstyle
+                              ), //text
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

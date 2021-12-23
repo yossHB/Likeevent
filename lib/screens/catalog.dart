@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Main_page.dart';
 import 'ProfilePage.dart';
-import 'categorie_type.dart';
+import 'categorie_temp.dart';
 import 'facebook.dart';
 import 'google.dart';
 import 'home.dart';
