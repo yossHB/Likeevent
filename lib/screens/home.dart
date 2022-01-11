@@ -7,7 +7,7 @@ class WelcomScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
+        child: Container(   
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

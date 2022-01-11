@@ -22,7 +22,7 @@ void main() async {
   await Firebase.initializeApp();
   return runApp(MyApp());
 }
-
+  
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
